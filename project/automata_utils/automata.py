@@ -1,4 +1,4 @@
-from typing import Optional, Set
+from typing import Set
 import networkx as nx
 from pyformlang.regular_expression import Regex
 from pyformlang.finite_automaton import (
@@ -16,14 +16,14 @@ def regex_to_dfa(regex: str) -> DeterministicFiniteAutomaton:
 
 def graph_to_nfa(
     graph: nx.MultiDiGraph,
-    start_states: Optional[Set[int]] = None,
-    final_states: Optional[Set[int]] = None,
+    start_states: Set[int],
+    final_states: Set[int],
 ) -> NondeterministicFiniteAutomaton:
     nfa = NondeterministicFiniteAutomaton.from_networkx(graph)
 
     nodes = set(graph.nodes())
-    s_states = nodes if start_states is None else set(start_states)
-    f_states = nodes if final_states is None else set(final_states)
+    s_states = nodes if len(start_states) == 0 else set(start_states)
+    f_states = nodes if len(final_states) == 0 else set(final_states)
 
     for s in s_states:
         nfa.add_start_state(s)
