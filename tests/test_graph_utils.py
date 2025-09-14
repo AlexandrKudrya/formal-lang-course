@@ -7,11 +7,8 @@ import pytest
 from project.graph_utils import get_graph_info, two_cycles_to_dot, GraphInfo
 from test_utils import parse_labels_from_dot
 
-BZIP_GRAPH = GraphInfo(
-    nodes=632,
-    edges=556,
-    labels={"a", "d"}
-)
+BZIP_GRAPH = GraphInfo(nodes=632, edges=556, labels={"a", "d"})
+
 
 @pytest.mark.network
 def test_get_graph_info_bzip_exact():
