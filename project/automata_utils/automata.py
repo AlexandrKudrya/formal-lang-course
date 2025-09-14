@@ -1,13 +1,9 @@
-# automata_utils.py
-from typing import Optional, Set, Iterable, Any
+from typing import Optional, Set
 import networkx as nx
 from pyformlang.regular_expression import Regex
 from pyformlang.finite_automaton import (
     DeterministicFiniteAutomaton,
     NondeterministicFiniteAutomaton,
-    State,
-    Symbol,
-    Epsilon,
 )
 
 
