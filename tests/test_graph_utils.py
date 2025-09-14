@@ -1,6 +1,5 @@
 import os
 import pathlib
-import uuid
 
 import pydot
 import pytest
@@ -30,7 +29,7 @@ def test_two_cycles_basic_dot_valid(tmp_path: pathlib.Path):
 
     assert os.path.exists(path)
     labels = parse_labels_from_dot(out)
-    assert {"x", "y"}.issubset(labels)
+    assert labels == {"x", "y"}
 
 
 def test_two_cycles_pathlike_and_common_node(tmp_path: pathlib.Path):

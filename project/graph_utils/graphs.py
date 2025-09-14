@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Iterable, Any, Set
 import os
 import cfpq_data
-import pydot
+import networkx as nx
 
 from .graph_info import GraphInfo
 
@@ -58,18 +58,5 @@ def two_cycles_to_dot(
     graph = cfpq_data.labeled_two_cycles_graph(
         n, m, common_node=common_node, labels=(label_left, label_right)
     )
-    dot = pydot.Dot(graph_type="digraph")
-
-    for node in graph.nodes():
-        dot.add_node(pydot.Node(str(node)))
-
-    for u, v, data in graph.edges(data=True):
-        edge = pydot.Edge(str(u), str(v))
-        lbl = data.get("label")
-        if lbl is not None:
-            edge.set("label", str(lbl))
-        dot.add_edge(edge)
-
-    out_dot_path = str(out_dot_path)
-    dot.write(out_dot_path)
+    nx.nx_pydot.write_dot(graph, out_dot_path)
     return out_dot_path
